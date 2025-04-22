@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies | GosuVision</title>
+    <link rel="stylesheet" href="/src/styles.css">
+    <link rel="stylesheet" href="/src/movies.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <img src="/src/img/ChatGPT Image Apr 21, 2025, 06_22_08 PM.png" alt="GosuVision Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="/vision/home.html">Home</a></li>
+            <li><a href="/vision/movies.html">Movies</a></li>
+            <li><a href="/vision/anime.html">Anime</a></li>
+            <li><a href="/vision/login.html">Log In</a></li>
+        </ul>
+    </nav>
+    
+    <main style="margin-top: 6rem;">
+        <section style="text-align: center;">
+        <input type="text" id="searchInput" placeholder="Search movies..." style="padding: 0.6rem; width: 60%; border-radius: 8px; border: none;">
+        <button onclick="handleSearch()">Search</button>
+        </section>
+    
+        <section class="movie-section">
+        <ul id="movie-list" class="movie-list"></ul>
+        <div id="movie-details" class="movie-details"></div>
+        </section>
+    </main>
+    
+    
+    <script src="/src/movies.js"></script>
+
+</body>
+</html>
