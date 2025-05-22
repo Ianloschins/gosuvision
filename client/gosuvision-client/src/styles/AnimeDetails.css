@@ -1,0 +1,29 @@
+.anime-details {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+  color: white;
+}
+
+.anime-details img {
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  width: 220px;
+}
+
+.anime-details h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.anime-details p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.anime-meta {
+  margin-top: 1rem;
+  background: #222;
+  padding: 1rem;
+  border-radius: 8px;
+}
