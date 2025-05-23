@@ -6,7 +6,7 @@ const endpoint = 'https://graphql.anilist.co';
 
 const TRENDING_QUERY = gql`
   query {
-    Page(perPage: 8) {
+    Page(perPage: 20) {
       media(sort: TRENDING_DESC, type: ANIME) {
         id
         title {
@@ -37,10 +37,10 @@ const SEARCH_QUERY = gql`
 `;
 
 function Home() {
-  const [searchTerm, setSearchTerm] = useState(''); // State to hold the search term
-  const [results, setResults] = useState([]); // State to hold the search results
+  const [searchTerm, setSearchTerm] = useState('');
+  const [results, setResults] = useState([]);
   const [title, setTitle] = useState('🔥 Trending Anime');
-
+  const [visibleStart, setVisibleStart] = useState(1);
 
   const fetchTrending = async () => {
     const data = await request(endpoint, TRENDING_QUERY);
@@ -59,11 +59,23 @@ function Home() {
     fetchTrending();
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVisibleStart((prev) => (prev + 4 >= results.length ? 1 : prev + 4));
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [results]);
+
+  const featured = results[0];
+  const rotating = results.slice(visibleStart, visibleStart + 4);
+
   return (
     <div className="home-container">
       <div className="home-header">
-        <div className='logo-wrapper'><img className="gosuvision-logo" src='../src/img/251d4e2d-6c48-4b90-8eb5-87c105aa16e7.png' alt='gosuvision-logo'/></div>
-        <h1> GosuVision</h1>
+        <div className="logo-wrapper">
+          <img className="gosuvision-logo" src="../src/img/251d4e2d-6c48-4b90-8eb5-87c105aa16e7.png" alt="gosuvision-logo" />
+        </div>
+        <h1>GosuVision</h1>
         <p>Track, search, and explore anime your way.</p>
       </div>
 
@@ -79,14 +91,32 @@ function Home() {
 
       <h2>{title}</h2>
 
-      <div className="grid">
-        {results.map((anime) => (
-          <div key={anime.id} className="card">
-            <img src={anime.coverImage.large} alt={anime.title.romaji} />
-            <p>{anime.title.romaji}</p>
+      {searchTerm.trim() === '' && results.length > 0 ? (
+        <div className="trending-layout">
+          <div className="featured-card">
+            <img src={featured.coverImage.large} alt={featured.title.romaji} />
+            <p className="title">{featured.title.romaji}</p>
           </div>
-        ))}
-      </div>
+
+          <div className="grid-2x2">
+            {rotating.map((anime) => (
+              <div key={anime.id} className="card">
+                <img src={anime.coverImage.large} alt={anime.title.romaji} />
+                <p>{anime.title.romaji}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="grid">
+          {results.map((anime) => (
+            <div key={anime.id} className="card">
+              <img src={anime.coverImage.large} alt={anime.title.romaji} />
+              <p>{anime.title.romaji}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

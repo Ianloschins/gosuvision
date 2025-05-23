@@ -15,7 +15,6 @@ body {
   max-width: 160vh;
   margin: auto;
   background-color: rgba(0, 0, 0, 0.67);
-
 }
 
 .gosuvision-logo {
@@ -81,18 +80,21 @@ h2 {
   background-color: #7a6fff;
 }
 
+/* General Grid */
 .grid {
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 }
 
+/* Shared card styles */
 .card {
-  background-color: peachpuff;
+  background: #ffe0c0;
+  padding: 0.75rem;
   border-radius: 10px;
-  overflow: hidden;
   text-align: center;
-  transition: transform 0.3s ease;
+  overflow: hidden;
+  transition: transform 1s ease;
 }
 
 .card:hover {
@@ -103,9 +105,74 @@ h2 {
   width: 100%;
   height: 260px;
   object-fit: cover;
+  border-radius: 6px;
 }
 
 .card p {
-  padding: 10px;
+  margin-top: 0.5rem;
   font-weight: bold;
+}
+
+/* Trending Anime Layout */
+.trending-layout {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Enlarged Featured Anime */
+.featured-card {
+  flex: 1;
+  text-align: center;
+  background: #222;
+  padding: 1rem;
+  border-radius: 12px;
+  color: white;
+}
+
+.featured-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* 2x2 Grid for Rotating Cards */
+.grid-2x2 {
+  flex: 2;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+/* Removed duplicate .grid-2x2 .card img rule to avoid conflicts */
+
+.grid-2x2 .card {
+  background: #ffe0c0;
+  padding: 0.5rem;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* align content at top */
+  align-items: center;
+  overflow: hidden;
+  height: 280px; /* <-- limit total card height */
+  width: 50%;
+}
+
+.grid-2x2 .card img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #000; /* Fill empty space to reduce visual gaps */
+}
+
+.grid-2x2 .card p {
+  font-weight: bold;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.1;
+  max-height: 3.3em;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

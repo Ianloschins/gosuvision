@@ -31,12 +31,11 @@ function AnimeDetails() {
   const { id } = useParams();
   const [anime, setAnime] = useState(null);
 
-  const fetchAnimeDetails = async () => {
-    const data = await request(endpoint, DETAILS_QUERY, { id: parseInt(id) });
-    setAnime(data.Media);
-  };
-
   useEffect(() => {
+    const fetchAnimeDetails = async () => {
+      const data = await request(endpoint, DETAILS_QUERY, { id: parseInt(id) });
+      setAnime(data.Media);
+    };
     fetchAnimeDetails();
   }, [id]);
 
