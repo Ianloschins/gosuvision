@@ -62,11 +62,6 @@ gosuvision-client/
 
 └── README.md
 
-yaml
-
-Copy
-
-Edit
 
 ---
 
@@ -108,11 +103,6 @@ Vite
 📜 License
 MIT © 2025 Ian Loschinskey
 
-yaml
-
-Copy
-
-Edit
 
 ---
 
